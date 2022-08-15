@@ -1,10 +1,21 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import StartButton from './src/components/StartButton/StartButton';
+import Responsive from 'react-native-lightweight-responsive';
+import colors from './src/assets/colors/colors';
 
-export default function App() {
+const App = () => {
+  const [isTesting, setIsTesting] = useState(false);
+
+  const initiate = () => {
+    setIsTesting(!isTesting);
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.heading}>{ `ZapTest` }</Text>
+      <StartButton initiate={initiate} />
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +24,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    backgroundColor: colors.midnight,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Responsive.height(155)
   },
+  heading: {
+    color: '#fff',
+    fontSize: 34,
+    paddingBottom: 0,
+  }
 });
+
+export default App;
